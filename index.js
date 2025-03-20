@@ -5,6 +5,7 @@ const client = new Discord.Client();
 const Wait = require('util').promisify(setTimeout);//Allows the bot to wait
 const { prefix, token } = require('./config.json');
 var mcBool = false;
+var rustBool = false;
 var http = require('http');
 
 http.get({'host': 'api.ipify.org', 'port': 80, 'path': '/'}, function(resp) {
@@ -88,38 +89,38 @@ client.on('message', message => {
   }*/
   
 //Lines here kept for re-using code for setting up other servers. No longer need Minecraft server for spice discord.
-  /*if(command === 'startmc' && (message.member.roles.cache.find(r=>r.name==="Creeper"))){
-	  if(!mcBool){
+  if(command === 'startrust' && (message.member.roles.cache.find(r=>r.name==="ruster"))){
+	  if(!rustBool){
 	  const {exec} = require ('child_process');
 	  console.log('Server was started by ' + message.author.username);
-	  message.channel.send('OwO Starting your Minecrap servor Mastur...');
-	  exec('start MCserver.bat')
-	  mcBool = true;
-	  client.user.setActivity('MCserver?: ' +mcBool);
+	  message.channel.send('Starting the rust server now. Get ready to Lust in Rust buddy.');
+	  exec('start startRust.bat')
+	  rustBool = true;
+	  client.user.setActivity('Rust Server online?: ' +mcBool);
 	  return;
 	  }
 
 	  else if(mcBool){
 	  message.channel.send('Server is already running retard.');
-	  message.channel.send('Or its broken.');
+	  message.channel.send('Or its broken. oopie?');
 	  return;
 	  }
 
 	  console.log('Im not seeing the crap bool for some reason');
 	  return;
   }
-  else if (command === 'startmc' && (message.member.roles.cache.find(r=>r.name!=="Creeper"))){ //Using a Strict inequality operand so it checks that the user is NOT a creeper specifically
-      message.channel.send('You\'re not a Creeper! You need to have the role before you can start the Server')
+  else if (command === 'startrust' && (message.member.roles.cache.find(r=>r.name!=="ruster"))){ //Using a Strict inequality operand so it checks that the user is NOT a creeper specifically
+      message.channel.send('You\'re not a in on the rust crew! You need to have the role before you can start the Server')
         .then(message.delete());
       return;
   }
 
-  if (command === 'stopmc' && (message.member.roles.cache.find(r=>r.name==="Creeper"))){
+  /*if (command === 'stoprust' && (message.member.roles.cache.find(r=>r.name==="ruster"))){
 	  if (mcBool){
 		  const {exec} = require ('child_process');
-		  exec('start killJava.bat')
+		  exec('start killRust.bat')
 		  mcBool = false;
-      message.channel.send('Minecraft and by proxy; fun, has now stopped.')
+      message.channel.send('Rust server and by proxy; fun, has now stopped.')
 		  client.user.setActivity('MCserver?: ' +mcBool);
 		  return;
 	  }
