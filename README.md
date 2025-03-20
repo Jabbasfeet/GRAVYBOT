@@ -1,5 +1,5 @@
 ## GRAVYBOT
-#Includes brand new insane amazing feature like:
+Includes brand new insane amazing feature like:
 
 1. ip disclosure
 2. Brain hurt
