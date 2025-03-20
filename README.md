@@ -1,8 +1,8 @@
-# GRAVYBOT
-Includes brand new insane amazing feature like:
+## GRAVYBOT
+#Includes brand new insane amazing feature like:
 
-ip disclosure
-Brain hurt
-My Github got locked out and I had to make a new one, kinda suck
-Gorbo included
-So yes, enjoy the bot
+1. ip disclosure
+2. Brain hurt
+3. My Github got locked out and I had to make a new one, kinda suck
+4. Gorbo included
+5. Profit...So yes, enjoy the bot
