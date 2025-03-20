@@ -2,12 +2,13 @@ require('events').EventEmitter.prototype._maxListeners = 70;
 require('events').defaultMaxListeners = 70;
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const Wait = require('util').promisify(setTimeout);//Allows the bot to wait
+const Wait = require('util').promisify(setTimeout);//Allows the bot to wait (I don't remember what this means or why I want it)
 const { prefix, token } = require('./config.json');
 var mcBool = false;
 var rustBool = false;
 var http = require('http');
 
+//Public IP getter, log posts it too so I can see it in the CMD, if this doesnt work I'll know right away
 http.get({'host': 'api.ipify.org', 'port': 80, 'path': '/'}, function(resp) {
   resp.on('data', function(ip) {
     pubIP = ip;
@@ -27,7 +28,7 @@ client.on('message', message => {
 
   if(command === 'help'){
 
-    message.channel.send('!ip: Sends public ip for server use.\n!owo <message here>: Sends an owoized message.\n!creeper: Sends a FuNnY mEsSaGe <:catblushy:987464891323543582>\n!startmc: will start up our minecraft server\n!stopmc: will shut down the server (Use when everyone is done)');
+    message.channel.send('!ip: Sends public ip for server use.\n!owo <message here>: Sends an owoized message.\n!creeper: Sends a FuNnY mEsSaGe <:catblushy:987464891323543582>\nMore features to come, maybe....hopefully');
     return;
   }
 
@@ -44,6 +45,7 @@ client.on('message', message => {
     return;
   }
   
+  //Gorbo Time everyone, You can't have Henry Cavill if you don't help out and take some Gorbo too.
   if(message.content.includes('gorbo')){
 	  message.channel.send('Gorbo just want to fuck')
 	  message.channel.send({ files: [{attachment: 'image/gorbo.jpg'}] })
@@ -55,6 +57,7 @@ client.on('message', message => {
     return;
   }
 
+  //If I remember correctly this was a bastard to set up and uses regexs to find the vowels and stuff to change them into uwu text. 
   if(command === 'owo'){
 
     const regExsl = /l/g;
@@ -70,6 +73,7 @@ client.on('message', message => {
     return;
     }
 
+  //Haha funnie
   if(command === 'creeper'){
 
     message.channel.send('Awwwww Maaaan.');
@@ -82,13 +86,14 @@ client.on('message', message => {
 	  return;
   }
   
+  //really wanted this to work, wanted it to @ the person who was eepy, can also kick them from chat using this. Could be exploited.
   /*if (command === 'eepy'){
 	  //const user = message.mentions.users.first();
 	  message.channel.send('Oh look ${message.author} is so eeeepy...');
 	  return;
   }*/
   
-//Lines here kept for re-using code for setting up other servers. No longer need Minecraft server for spice discord.
+  //Lines here are being re-used for rust server, Can be used for any type of server. Just requires a new batch to be made.
   if(command === 'startrust' && (message.member.roles.cache.find(r=>r.name==="ruster"))){
 	  if(!rustBool){
 	  const {exec} = require ('child_process');
