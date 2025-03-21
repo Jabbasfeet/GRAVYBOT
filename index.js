@@ -1,3 +1,4 @@
+///////////////////////////////////////////////////GRAVY BOT///////////////////////////////////////////////////
 require('events').EventEmitter.prototype._maxListeners = 70;
 require('events').defaultMaxListeners = 70;
 const Discord = require('discord.js');
@@ -81,7 +82,7 @@ client.on('message', message => {
   }
 
   if (command === 'testing'){
-	  message.channel.send('The minecraft bool is ' +mcBool);
+	  message.channel.send('The rust bool is ' +rustBool);
 	  message.channel.send('This command is working');
 	  return;
   }
@@ -101,11 +102,11 @@ client.on('message', message => {
 	  message.channel.send('Starting the rust server now. Get ready to Lust in Rust buddy.');
 	  exec('start startRust.bat')
 	  rustBool = true;
-	  client.user.setActivity('Rust Server online?: ' +mcBool);
+	  client.user.setActivity('Rust Server online?: ' +rustBool);
 	  return;
 	  }
 
-	  else if(mcBool){
+	  else if(rustBool){
 	  message.channel.send('Server is already running retard.');
 	  message.channel.send('Or its broken. oopie?');
 	  return;
@@ -120,30 +121,58 @@ client.on('message', message => {
       return;
   }
 
-  /*if (command === 'stoprust' && (message.member.roles.cache.find(r=>r.name==="ruster"))){
-	  if (mcBool){
+  if (command === 'stoprust' && (message.member.roles.cache.find(r=>r.name==="ruster"))){
+	  if (rustBool){
 		  const {exec} = require ('child_process');
 		  exec('start killRust.bat')
-		  mcBool = false;
+		  rustBool = false;
       message.channel.send('Rust server and by proxy; fun, has now stopped.')
-		  client.user.setActivity('MCserver?: ' +mcBool);
+		  client.user.setActivity('Rust Server online? : ' +rustBool);
 		  return;
 	  }
 
-	  else if (!mcBool){
-		  message.channel.send('The Minecraft server is not started')
+	  else if (!rustBool){
+		  message.channel.send('The rust server is not running, I cannot stop what isnt started')
 			   .then(message.delete());
 		  return;
 	  }
 
 	  return;
   }
-  else if (command === 'stopmc' && (message.member.roles.cache.find(r=>r.name!=="Creeper"))){ //Using a Strict inequality operand so it checks that the user is NOT a creeper specifically
-      message.channel.send('You\'re not a Creeper! Nice Try stopping our fun.')
+  else if (command === 'stoprust' && (message.member.roles.cache.find(r=>r.name!=="Creeper"))){ //Using a Strict inequality operand so it checks that the user is NOT a creeper specifically
+      message.channel.send('Sorry buddy you are not a rustard you cannot stop the server.')
         .then(message.delete());
       return;
   }
-*/
+
+// Prototype username maker for server if you run out of ideas you can run it for sime sillies. Want to have adjective wordlist + noun wordlist in the end not just full random. Works as is. Nice exercise. (Test command made Junkie Gorbo)
+  if (command === 'newname'){
+	  const wordGenerator = () => {
+		  const wordBank = [
+			'Fuck ',
+			'Nugget ',
+			'Soggy ',
+			'Gorbo ',
+			'Neanderthal ',
+			'Baby ',
+			'Thalidomide ',
+			'Deformed ',
+			'Junkie ',
+			'Sopping ',
+			'Egg ',
+			'Man '
+		  ]
+		  
+		  let result = ''
+		  for (let i = 0; i <= 1; i++){
+			  result = result.concat(wordBank[Math.floor(Math.random() * wordBank.length)])
+		  }
+		  return result
+	  }
+	  console.log('------NEWNAME------ called by ' + message.author.username + ' on the server ' + message.guild.name + ' in channel ' + message.channel.name + ' on ' + message.createdAt);
+	  console.log(wordGenerator());
+	  return;
+  }
 
   if(command === 'ip' && (message.member.roles.cache.find(r=>r.name==="iphaver"))){
 
@@ -169,7 +198,7 @@ client.on('message', message => {
     return;
   }
 
-  else if (command === 'ip' && (message.member.roles.cache.find(r=>r.name!=="Creeper"))){ //Using a Strict inequality operand so it checks that the user is NOT "iphaver" specifically
+  else if (command === 'ip' && (message.member.roles.cache.find(r=>r.name!=="ruster"))){ //Using a Strict inequality operand so it checks that the user is NOT "iphaver" specifically
     message.channel.send('You\'re not allowed! You\'re not even my friend.')
       .then(message.delete());
     return;
